@@ -68,7 +68,7 @@ class Api
     {
         header('Content-Type: application/json; charset=utf-8');
 
-        if(!empty($this->key) && $this->requestMethod === "GET"){
+        if(!empty($this->key) && $this->requestMethod === "DELETE"){
             echo $this->deleteItem();
             die();
         } elseif (empty($this->key) && $this->requestMethod === "GET") {
