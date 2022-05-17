@@ -1,0 +1,12 @@
+{
+    "name": "aleksejvinogradov/test-postavleno",
+    "authors": [
+        {
+            "name": "MoRzE",
+            "email": "alexvin_noyz@mail.ru"
+        }
+    ],
+    "require": {
+        "predis/predis": ">=v0.8.7"
+    }
+}
