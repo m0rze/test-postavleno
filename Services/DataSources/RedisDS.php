@@ -65,7 +65,7 @@ class RedisDS implements DataSourceInterface
             $deleteStatus = $this->conn->del($key);
         } catch (Exception $e) {
             $this->conn->disconnect();
-            return false;
+            return $e->getMessage();
         }
         $this->conn->disconnect();
         return $deleteStatus;

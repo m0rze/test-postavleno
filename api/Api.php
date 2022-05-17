@@ -11,7 +11,7 @@ class Api
      * Current key
      * @var string
      */
-    private $key = "";
+    private string $key = "";
     /**
      * Data source object
      * @var DataSourceInterface
@@ -68,7 +68,7 @@ class Api
     {
         header('Content-Type: application/json; charset=utf-8');
 
-        if(!empty($this->key) && $this->requestMethod === "DELETE"){
+        if(!empty($this->key) && $this->requestMethod === "GET"){
             echo $this->deleteItem();
             die();
         } elseif (empty($this->key) && $this->requestMethod === "GET") {
@@ -84,14 +84,16 @@ class Api
     private function deleteItem() {
         $result = [
             "status" => true,
-            "code" => 400,
+            "code" => 500,
             "data" => ""
         ];
-        if ($this->dataSource->delete($this->key) == true) {
+        $response = $this->dataSource->delete($this->key);
+        if ($response === "1" || $response === "0") {
             http_response_code(200);
             $result["code"] = 200;
         } else {
-            http_response_code(400);
+            http_response_code(500);
+            $result["data"] = ["message" => $response];
         }
         return json_encode($result);
     }
